@@ -11,17 +11,20 @@ interface InfoData {
 const Footer: React.FC = () => {
   const [infoData, setInfoData] = useState<InfoData[]>([]);
 
-  useEffect(() => {
-    const fetchFooterInfo = async () => {
-      try {
-        const response = await fetch('/api/footerInfo');
-        const data: InfoData[] = await response.json();
-        setInfoData(data);
-      } catch (error) {
-        console.error('Failed to fetch footer info:', error);
+  const fetchFooterInfo = async () => {
+    try {
+      const response = await fetch('/api/footerInfo');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    };
+      const data = await response.json();
+      setInfoData(data);
+    } catch (error) {
+      console.error('Failed to fetch footer info:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchFooterInfo();
   }, []);
 

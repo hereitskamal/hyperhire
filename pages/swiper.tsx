@@ -1,6 +1,6 @@
+// pages/swiper.tsx
 import React from 'react';
 
-// Define the structure of a swiper card
 interface SwiperCard {
   title: string;
   subtitle: string;
@@ -8,21 +8,20 @@ interface SwiperCard {
   imageUrl: string;
 }
 
-// Define the props for the SwiperPage component
 interface SwiperPageProps {
   swiperCards: SwiperCard[];
 }
 
-// Fetching swiper cards from API using getServerSideProps
 export async function getServerSideProps() {
-  const swiperCardsRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/swiperCards`);
-  const swiperCards: SwiperCard[] = await swiperCardsRes.json();
-
-  return {
-    props: {
-      swiperCards,
-    },
-  };
+  try {
+    const swiperCardsRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/swiperCards`);
+    if (!swiperCardsRes.ok) throw new Error('Failed to fetch swiper cards');
+    const swiperCards: SwiperCard[] = await swiperCardsRes.json();
+    return { props: { swiperCards } };
+  } catch (error) {
+    console.error(error);
+    return { props: { swiperCards: [] } }; // Handle errors gracefully
+  }
 }
 
 const SwiperPage: React.FC<SwiperPageProps> = ({ swiperCards }) => {
@@ -30,18 +29,22 @@ const SwiperPage: React.FC<SwiperPageProps> = ({ swiperCards }) => {
     <div>
       <h1>Swiper Cards</h1>
       <div>
-        {swiperCards.map((card, index) => (
-          <div key={index}>
-            <h3>{card.title}</h3>
-            <p>{card.subtitle}</p>
-            <ul>
-              {card.tags.map((tag, idx) => (
-                <li key={idx}>{tag}</li>
-              ))}
-            </ul>
-            <img src={card.imageUrl} alt={card.title} />
-          </div>
-        ))}
+        {swiperCards.length > 0 ? (
+          swiperCards.map((card, index) => (
+            <div key={index}>
+              <h3>{card.title}</h3>
+              <p>{card.subtitle}</p>
+              <ul>
+                {card.tags.map((tag, idx) => (
+                  <li key={idx}>{tag}</li>
+                ))}
+              </ul>
+              <img src={card.imageUrl} alt={card.title} />
+            </div>
+          ))
+        ) : (
+          <p>No swiper cards available.</p>
+        )}
       </div>
     </div>
   );

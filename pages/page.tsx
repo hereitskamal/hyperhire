@@ -1,4 +1,4 @@
-// app/page.tsx
+// pages/index.tsx
 import React from 'react';
 
 interface FooterInfo {
@@ -7,32 +7,35 @@ interface FooterInfo {
   text: string;
 }
 
-async function fetchFooterInfo(): Promise<FooterInfo[]> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/footerInfo`);
-
-  // Handle potential errors
-  if (!response.ok) {
-    console.error('Failed to fetch footer information:', response.statusText);
-    return []; // Return an empty array on error
+// Fetching footer information from API using getServerSideProps
+export async function getServerSideProps() {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/footerInfo`);
+    if (!response.ok) throw new Error('Failed to fetch footer info');
+    const footerInfo: FooterInfo[] = await response.json();
+    return { props: { footerInfo } };
+  } catch (error) {
+    console.error(error);
+    return { props: { footerInfo: [] } }; // Handle errors gracefully
   }
-
-  return response.json();
 }
 
-const HomePage = async () => {
-  const footerInfo = await fetchFooterInfo();
-
+const HomePage: React.FC<{ footerInfo: FooterInfo[] }> = ({ footerInfo }) => {
   return (
     <div>
       <h1>Footer Information</h1>
       <ul>
-        {footerInfo.map((info, index) => (
-          <li key={index}>
-            <h3>{info.title}</h3>
-            <p>{info.subtitle}</p>
-            <p>{info.text}</p>
-          </li>
-        ))}
+        {footerInfo.length > 0 ? (
+          footerInfo.map((info, index) => (
+            <li key={index}>
+              <h3>{info.title}</h3>
+              <p>{info.subtitle}</p>
+              <p>{info.text}</p>
+            </li>
+          ))
+        ) : (
+          <li>No footer information available.</li>
+        )}
       </ul>
     </div>
   );
