@@ -8,11 +8,7 @@ interface SwiperCard {
   imageUrl: string;
 }
 
-interface SwiperPageProps {
-  swiperCards: SwiperCard[];
-}
-
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const swiperCardsRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/swiperCards`);
     if (!swiperCardsRes.ok) throw new Error('Failed to fetch swiper cards');
@@ -20,11 +16,11 @@ export async function getServerSideProps() {
     return { props: { swiperCards } };
   } catch (error) {
     console.error(error);
-    return { props: { swiperCards: [] } }; // Handle errors gracefully
+    return { props: { swiperCards: [] } };
   }
 }
 
-const SwiperPage: React.FC<SwiperPageProps> = ({ swiperCards }) => {
+const SwiperPage: React.FC<{ swiperCards: SwiperCard[] }> = ({ swiperCards }) => {
   return (
     <div>
       <h1>Swiper Cards</h1>

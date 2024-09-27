@@ -6,8 +6,7 @@ interface Skill {
   label: string;
 }
 
-// Fetching skills from API using getServerSideProps
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/skill`);
     if (!res.ok) throw new Error('Failed to fetch skills');
@@ -15,7 +14,7 @@ export async function getServerSideProps() {
     return { props: { skills } };
   } catch (error) {
     console.error(error);
-    return { props: { skills: [] } }; // Handle errors gracefully
+    return { props: { skills: [] } };
   }
 }
 

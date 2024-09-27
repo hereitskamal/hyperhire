@@ -6,8 +6,7 @@ interface BannerTag {
   icon: string;
 }
 
-// Fetching banner tags from API using getServerSideProps
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/bannerTag`);
     if (!res.ok) throw new Error('Failed to fetch banner tags');
@@ -15,7 +14,7 @@ export async function getServerSideProps() {
     return { props: { bannerTags } };
   } catch (error) {
     console.error(error);
-    return { props: { bannerTags: [] } }; // Handle errors gracefully
+    return { props: { bannerTags: [] } }; // Return empty array on error
   }
 }
 

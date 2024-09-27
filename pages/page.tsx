@@ -1,43 +1,11 @@
+// pages/index.tsx
 import React from 'react';
 
-interface FooterInfo {
-  title: string;
-  subtitle: string;
-  text: string;
-}
-
-// Fetching footer information from API
-async function fetchFooterInfo(): Promise<FooterInfo[]> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/footerInfo`);
-
-  if (!response.ok) {
-    console.error('Failed to fetch footer information:', response.statusText);
-    return []; // Return an empty array on error
-  }
-
-  return response.json();
-}
-
-// The HomePage component
-const HomePage = async () => {
-  const footerInfo = await fetchFooterInfo(); // Await the fetch here
-
+const HomePage: React.FC = () => {
   return (
     <div>
-      <h1>Footer Information</h1>
-      <ul>
-        {footerInfo.length > 0 ? (
-          footerInfo.map((info, index) => (
-            <li key={index}>
-              <h3>{info.title}</h3>
-              <p>{info.subtitle}</p>
-              <p>{info.text}</p>
-            </li>
-          ))
-        ) : (
-          <li>No footer information available.</li>
-        )}
-      </ul>
+      <h1>Welcome to the Home Page</h1>
+      <p>This is the content of your homepage.</p>
     </div>
   );
 };
