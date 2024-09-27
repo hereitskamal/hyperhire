@@ -7,6 +7,7 @@ interface FooterInfo {
   text: string;
 }
 
+// Fetching footer information from API
 async function fetchFooterInfo(): Promise<FooterInfo[]> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/footerInfo`);
 
@@ -18,8 +19,9 @@ async function fetchFooterInfo(): Promise<FooterInfo[]> {
   return response.json();
 }
 
+// The HomePage component
 const HomePage = async () => {
-  const footerInfo = await fetchFooterInfo();
+  const footerInfo = await fetchFooterInfo(); // Await the fetch here
 
   return (
     <div>
