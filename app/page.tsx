@@ -8,7 +8,7 @@ import HeroSection from './components/organisms/HeroSection';
 import ChatBubble from './components/molecules/ChatBubble';
 import BannerTag from './components/molecules/BannerTag';
 import { fetchBannerTags, fetchJobs, fetchSwiperCards, fetchSkills } from './utils/api';
-import SnackbarLoader from './components/molecules/snackbarLoader';
+import SnackbarLoader from './components/molecules/SnackbarLoader';
 
 interface Job {
   title: string;
