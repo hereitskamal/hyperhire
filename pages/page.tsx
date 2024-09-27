@@ -1,4 +1,4 @@
-// pages/index.tsx
+// app/page.tsx
 import React from 'react';
 
 interface FooterInfo {
@@ -7,20 +7,20 @@ interface FooterInfo {
   text: string;
 }
 
-// Fetching footer information from API using getServerSideProps
-export async function getServerSideProps() {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/footerInfo`);
-    if (!response.ok) throw new Error('Failed to fetch footer info');
-    const footerInfo: FooterInfo[] = await response.json();
-    return { props: { footerInfo } };
-  } catch (error) {
-    console.error(error);
-    return { props: { footerInfo: [] } }; // Handle errors gracefully
+async function fetchFooterInfo(): Promise<FooterInfo[]> {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/footerInfo`);
+
+  if (!response.ok) {
+    console.error('Failed to fetch footer information:', response.statusText);
+    return []; // Return an empty array on error
   }
+
+  return response.json();
 }
 
-const HomePage: React.FC<{ footerInfo: FooterInfo[] }> = ({ footerInfo }) => {
+const HomePage = async () => {
+  const footerInfo = await fetchFooterInfo();
+
   return (
     <div>
       <h1>Footer Information</h1>
