@@ -1,5 +1,3 @@
-// /pages/api/swiper-cards.js
-
 export default function handler(req, res) {
   const swiperCards = [
     {

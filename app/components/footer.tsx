@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
   const iconPath = '/icons';
 
   return (
-    <div className="bg-custom-gray py-10 md:px-36">
+    <div className="bg-custom-gray py-10 px-4 md:px-40">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start px-4">
         <div className="flex flex-col mb-4 md:mb-0 w-48">
           <div className="flex items-center mb-4 relative">

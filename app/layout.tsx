@@ -2,8 +2,8 @@
 
 import './globals.css';
 import { ReactNode } from 'react';
-import React from 'react'; // Import React
-import Header from './components/Header'; // Ensure capitalization matches the file
+import React from 'react';
+import Header from './components/Header';
 import Footer from './components/footer';
 
 export default function Layout({ children }: { children: ReactNode }) {

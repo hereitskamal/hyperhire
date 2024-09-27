@@ -121,7 +121,7 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-cyan-600 opacity-80"></div>
       <SnackbarLoader message="Loading data, please wait..." isLoading={isLoading} />
 
-      <div className="container mx-auto flex flex-col md:flex-row md:px-8 sm:px-4 pt-20 md:px-16 relative z-10">
+      <div className="container mx-auto flex flex-col md:flex-row md:px-8 sm:px-4 pt-20 md:px-20   relative z-10">
         <div className="flex-1 flex flex-col justify-center px-2 md:0 mb-4 md:mb-0 max-w-l mx-auto">
           <div className="w-auto">
             <ChatBubble content="풀타임, 파트타임" delay={0.8} trianglePosition="left-bottom" />
@@ -222,13 +222,13 @@ export default function HomePage() {
       </div>
 
       <div
-        className="hidden flex w-full justify-start overflow-x-auto scrollbar-hide pt-12 no-select z-30 md:block"
+        className="hidden  w-full justify-start overflow-x-auto scrollbar-hide pt-12 no-select z-30 md:flex"
         ref={scrollRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}>
-        <div className="flex gap-2 pl-40 ml-2">
+        <div className="flex gap-2 pl-40 ml-4">
           {bannerTags.map((tag, index) => (
             <BannerTag key={index} text={tag.text} icon={tag.icon} />
           ))}
