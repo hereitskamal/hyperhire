@@ -51,7 +51,7 @@ export default function HomePage() {
   const scrollLeft = useRef<number>(0);
 
   useEffect(() => {
-    const loadData: AsyncFunction<[Job[], SwiperCard[], BannerTagData[], Skill[]]> = async () => {
+    const loadData = async (): Promise<[Job[], SwiperCard[], BannerTagData[], Skill[]]> => {
       try {
         const [fetchedJobs, fetchedSwiperCards, fetchedBannerTags, fetchedSkills] = await Promise.all([
           fetchJobs(),
@@ -63,10 +63,15 @@ export default function HomePage() {
         setSwiperCards(fetchedSwiperCards);
         setBannerTags(fetchedBannerTags);
         setSkills(fetchedSkills);
+        
+        // Return the fetched data if needed, otherwise you can just return an empty array
+        return [fetchedJobs, fetchedSwiperCards, fetchedBannerTags, fetchedSkills];
       } catch (err: unknown) {
         if (err instanceof Error) {
           setError(err.message);
         }
+        // Return an empty array in case of error, depending on your logic
+        return [[], [], [], []];
       } finally {
         setLoadingJobs(false);
         setLoadingSwiperCards(false);
@@ -74,9 +79,10 @@ export default function HomePage() {
         setLoadingSkills(false);
       }
     };
-
+  
     loadData();
   }, []);
+  
 
   const isLoading = loadingJobs || loadingSwiperCards || loadingBannerTags || loadingSkills;
 
