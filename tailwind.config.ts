@@ -11,6 +11,11 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'custom-gray': '#FBFBFB',
+        'custom-blue': '#58C4E9', 
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(to right, #749ff7, #a7e9f7, #56a6f7, #766ef7)',
       },
     },
   },
