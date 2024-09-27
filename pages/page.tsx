@@ -1,4 +1,3 @@
-// app/page.tsx
 import React from 'react';
 
 interface FooterInfo {
