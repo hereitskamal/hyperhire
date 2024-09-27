@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
   title: React.ReactNode;
-  subtitle: React.ReactNode; // Change type to ReactNode
+  subtitle: React.ReactNode;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => (

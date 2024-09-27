@@ -32,6 +32,8 @@ interface Skill {
   label: string;
 }
 
+type AsyncFunction<T> = () => Promise<T>;
+
 export default function HomePage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [swiperCards, setSwiperCards] = useState<SwiperCard[]>([]);
@@ -44,25 +46,27 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  const isDragging = useRef<boolean>(false);
+  const startX = useRef<number>(0);
+  const scrollLeft = useRef<number>(0);
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadData: AsyncFunction<[Job[], SwiperCard[], BannerTagData[], Skill[]]> = async () => {
       try {
         const [fetchedJobs, fetchedSwiperCards, fetchedBannerTags, fetchedSkills] = await Promise.all([
           fetchJobs(),
           fetchSwiperCards(),
           fetchBannerTags(),
-          fetchSkills(), // Fetch skills from the new API
+          fetchSkills(),
         ]);
         setJobs(fetchedJobs);
         setSwiperCards(fetchedSwiperCards);
         setBannerTags(fetchedBannerTags);
-        setSkills(fetchedSkills); // Set skills data
-      } catch (err: any) {
-        setError(err.message);
+        setSkills(fetchedSkills);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        }
       } finally {
         setLoadingJobs(false);
         setLoadingSwiperCards(false);
@@ -76,7 +80,7 @@ export default function HomePage() {
 
   const isLoading = loadingJobs || loadingSwiperCards || loadingBannerTags || loadingSkills;
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (scrollRef.current) {
       isDragging.current = true;
       startX.current = e.pageX - scrollRef.current.offsetLeft;
@@ -92,7 +96,7 @@ export default function HomePage() {
     isDragging.current = false;
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging.current || !scrollRef.current) return;
 
     e.preventDefault();
@@ -112,8 +116,6 @@ export default function HomePage() {
           opacity: 0.8,
         }}></div>
       <div className="absolute inset-0 bg-cyan-600 opacity-80"></div>
-
-      {/* Snackbar Loader */}
       <SnackbarLoader message="Loading data, please wait..." isLoading={isLoading} />
 
       <div className="container mx-auto flex flex-col md:flex-row md:px-8 sm:px-4 pt-20 md:px-16 relative z-10">

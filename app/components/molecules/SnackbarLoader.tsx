@@ -14,6 +14,7 @@ const SnackbarLoader: React.FC<SnackbarLoaderProps> = ({ message, isLoading }) =
         className="bg-cyan-600 h-2 rounded"
         style={{ width: isLoading ? '100%' : '0%', transition: 'width 0.5s ease-in-out' }}
       />
+      {message && <p className="text-center text-gray-700">{message}</p>}
     </div>
   );
 };

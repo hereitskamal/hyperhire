@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react'; // Import React
 
 interface DropdownProps {
   label: string;
   color: string;
-
   labelColor?: string;
   options: string[];
   onSelect: (option: string) => void;
@@ -20,16 +19,15 @@ const Dropdown: React.FC<DropdownProps> = ({
   width = 'w-72',
   labelColor = 'text-white',
 }) => {
-  // Default width set to 'w-72'
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (): void => {
     setDropdownOpen((prev) => !prev);
   };
 
-  const handleOptionClick = (option: string) => {
+  const handleOptionClick = (option: string): void => {
     onSelect(option);
-    setDropdownOpen(false); // Close dropdown after selection
+    setDropdownOpen(false);
   };
 
   return (

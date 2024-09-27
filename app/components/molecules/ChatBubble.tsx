@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 
 interface ChatBubbleProps {
   content: string;
-  delay?: number; // Optional
-  trianglePosition?: 'center-bottom' | 'left-bottom' | 'right-bottom'; // Triangle position
+  delay?: number;
+  trianglePosition?: 'center-bottom' | 'left-bottom' | 'right-bottom';
   icon?: string;
-  style?: React.CSSProperties; // New icon prop
+  style?: React.CSSProperties;
 }
 
 const ChatBubble: React.FC<ChatBubbleProps> = ({

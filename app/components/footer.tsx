@@ -1,10 +1,11 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
 
 interface InfoData {
   title: string;
   subtitle: string;
-  text: React.ReactNode; // Keep this as React.ReactNode for JSX content
+  text: React.ReactNode;
 }
 
 const Footer: React.FC = () => {
@@ -69,7 +70,7 @@ const Footer: React.FC = () => {
             <div key={index} className="bg-transparent text-black rounded-lg p-4">
               <h3 className="font-bold text-sm py-1">{info.title}</h3>
               <h4 className="text-xs py-1">{info.subtitle}</h4>
-              <p className="text-xs font-bold">{info.text}</p> {/* Ensure this is a valid string or JSX */}
+              <p className="text-xs font-bold">{info.text}</p>
             </div>
           ))}
         </div>

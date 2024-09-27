@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 import Logo from '../../public/logo.png';
 import Dropdown from './microComponents/Dropdown';
 import { useState, useEffect } from 'react';

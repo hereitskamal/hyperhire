@@ -7,10 +7,10 @@ interface CardProps {
   tagsFontSize?: string;
   tags: string[];
   imageSize: string;
-  className?: string; // Optional className for custom styles
-  imageUrl: string; // New prop for the image URL
-  width: string; // New prop for width
-  height: string; // New prop for height
+  className?: string;
+  imageUrl: string;
+  width: string;
+  height: string;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({
   height,
 }) => (
   <div
-    className={` rounded-lg bg-white shadow-lg flex flex-col transition-transform transform ${className} ${width} ${height}`}>
+    className={`rounded-lg bg-white shadow-lg flex flex-col transition-transform transform ${className} ${width} ${height}`}>
     <div className="flex justify-center">
       <div className={`${imageSize} mt-4 mb-2 rounded-full overflow-hidden border border-gray-300`}>
         <img src={imageUrl} alt="Profile" className="object-cover w-full h-full" />
