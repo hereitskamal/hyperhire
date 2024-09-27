@@ -32,8 +32,6 @@ interface Skill {
   label: string;
 }
 
-type AsyncFunction<T> = () => Promise<T>;
-
 export default function HomePage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [swiperCards, setSwiperCards] = useState<SwiperCard[]>([]);
@@ -63,7 +61,7 @@ export default function HomePage() {
         setSwiperCards(fetchedSwiperCards);
         setBannerTags(fetchedBannerTags);
         setSkills(fetchedSkills);
-        
+
         // Return the fetched data if needed, otherwise you can just return an empty array
         return [fetchedJobs, fetchedSwiperCards, fetchedBannerTags, fetchedSkills];
       } catch (err: unknown) {
@@ -79,10 +77,9 @@ export default function HomePage() {
         setLoadingSkills(false);
       }
     };
-  
+
     loadData();
   }, []);
-  
 
   const isLoading = loadingJobs || loadingSwiperCards || loadingBannerTags || loadingSkills;
 
