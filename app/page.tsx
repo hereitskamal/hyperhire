@@ -71,10 +71,10 @@ const HomePage = async () => {
                 icon={'/icons/dolor.svg'}
                 style={{ top: '-40px', left: '35%', position: 'relative' }}
               />
-              <button className="absolute text-xl left-0 md:left-4 top-1/2 transform -translate-y-1/2 z-20 text-white p-1 rounded-full">
+              <button className="absolute text-xl left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-20 text-white p-1 rounded-full">
                 &#10094;
               </button>
-              <button className="absolute text-xl right-0 md:right-4 top-1/2 transform -translate-y-1/2 z-20 text-white p-1 rounded-full">
+              <button className="absolute text-xl right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-20 text-white p-1 rounded-full">
                 &#10095;
               </button>
               <div className="flex relative gap-2 px-2 md:p-0">
