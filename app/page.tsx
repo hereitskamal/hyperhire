@@ -78,7 +78,6 @@ const HomePage = async () => {
                 &#10095;
               </button>
               <div className="flex relative gap-2 px-2 md:p-0">
-
                 {swiperCards.map((card, index) => {
                   const isCenterCard = index === 2;
 
