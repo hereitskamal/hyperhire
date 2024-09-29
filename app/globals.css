@@ -16,7 +16,7 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background-color: var(--background, #f0f0f0);
   font-family: Arial, Helvetica, sans-serif;
 }
 /* styles/globals.css or wherever your global styles are defined */
@@ -38,5 +38,15 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@supports (-webkit-appearance: none) {
+  .main-container {
+    max-width: 1240px;
   }
 }

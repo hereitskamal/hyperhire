@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -12,8 +13,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => (
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="text-3xl lg:text-4xl font-bold text-white leading-tight mb-4">
-      {title}
+      className={`text-3xl lg:text-4xl ${title ? '' : 'p-12'} font-bold text-white leading-tight mb-4`}>
+      {title ? title : 'Default Title'}
     </motion.h1>
     <motion.div
       initial={{ opacity: 0, y: 20 }}

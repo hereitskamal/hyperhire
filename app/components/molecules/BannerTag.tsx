@@ -1,4 +1,3 @@
-// components/molecules/BannerTag.tsx
 import React from 'react';
 
 interface BannerTagProps {

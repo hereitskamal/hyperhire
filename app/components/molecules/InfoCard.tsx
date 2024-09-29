@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react'; // Import React
 import { motion } from 'framer-motion';
 

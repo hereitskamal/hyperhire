@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <header className={`fixed w-full top-0 left-0 z-30 transition-colors duration-300 ${bgColor}`}>
-      <div className="container mx-auto flex items-center justify-between px-6 md:px-16 py-4">
+      <div className="main-container container mx-auto flex items-center justify-between px-6 md:px-16 py-4">
         <Link href="/" className="flex items-center">
           <Image src={Logo} alt="Brand Logo" width={114} height={40} priority={true} className="mr-2" />
         </Link>

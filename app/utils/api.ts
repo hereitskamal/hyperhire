@@ -1,4 +1,6 @@
 // utils/api.ts
+const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 interface Job {
   title: string;
   sub: string;
@@ -16,27 +18,27 @@ interface BannerTagData {
   icon: string;
 }
 
-export const fetchJobs = async (): Promise<Job[]> => {
-  const res = await fetch('/api/jobs');
-  if (!res.ok) throw new Error('Failed to fetch jobs');
+const fetchWithErrorHandling = async (url: string) => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    const errorText = await res.text(); // Optionally read the response body
+    throw new Error(`Error ${res.status}: ${res.statusText} - ${errorText}`);
+  }
   return res.json();
+};
+
+export const fetchJobs = async (): Promise<Job[]> => {
+  return fetchWithErrorHandling(`${API_BASE_URL}/api/jobs`);
 };
 
 export const fetchSwiperCards = async (): Promise<SwiperCard[]> => {
-  const res = await fetch('/api/swiperCards');
-  if (!res.ok) throw new Error('Failed to fetch swiper cards');
-  return res.json();
+  return fetchWithErrorHandling(`${API_BASE_URL}/api/swiperCards`);
 };
 
 export const fetchBannerTags = async (): Promise<BannerTagData[]> => {
-  const res = await fetch('/api/bannerTag');
-  if (!res.ok) throw new Error('Failed to fetch banner tags');
-  return res.json();
+  return fetchWithErrorHandling(`${API_BASE_URL}/api/bannerTag`);
 };
-export const fetchSkills = async () => {
-  const response = await fetch('/api/skill');
-  if (!response.ok) {
-    throw new Error('Failed to fetch skills');
-  }
-  return await response.json();
+
+export const fetchSkills = async (): Promise<any[]> => {
+  return fetchWithErrorHandling(`${API_BASE_URL}/api/skill`);
 };
