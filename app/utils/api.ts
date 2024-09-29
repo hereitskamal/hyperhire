@@ -1,4 +1,3 @@
-// utils/api.ts
 const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface Job {
@@ -18,10 +17,15 @@ interface BannerTagData {
   icon: string;
 }
 
+interface Skill {
+  id: string;
+  label: string;
+}
+
 const fetchWithErrorHandling = async (url: string) => {
   const res = await fetch(url);
   if (!res.ok) {
-    const errorText = await res.text(); // Optionally read the response body
+    const errorText = await res.text();
     throw new Error(`Error ${res.status}: ${res.statusText} - ${errorText}`);
   }
   return res.json();
@@ -39,6 +43,6 @@ export const fetchBannerTags = async (): Promise<BannerTagData[]> => {
   return fetchWithErrorHandling(`${API_BASE_URL}/api/bannerTag`);
 };
 
-export const fetchSkills = async (): Promise<any[]> => {
+export const fetchSkills = async (): Promise<Skill[]> => {
   return fetchWithErrorHandling(`${API_BASE_URL}/api/skill`);
 };

@@ -8,28 +8,6 @@ import BannerTag from './components/molecules/BannerTag';
 import { fetchBannerTags, fetchJobs, fetchSwiperCards, fetchSkills } from './utils/api';
 import SnackbarLoader from './components/molecules/Loader';
 
-interface Job {
-  title: string;
-  sub: string;
-}
-
-interface SwiperCard {
-  title: string;
-  subtitle: string;
-  tags: string[];
-  imageUrl: string;
-}
-
-interface BannerTagData {
-  text: string;
-  icon: string;
-}
-
-interface Skill {
-  id: string;
-  label: string;
-}
-
 const HomePage = async () => {
   try {
     const [jobs, swiperCards, bannerTags, skills] = await Promise.all([
