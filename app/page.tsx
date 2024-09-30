@@ -125,12 +125,8 @@ const HomePage = async () => {
           </div>
         </div>
 
-        <div className="hidden w-full justify-start overflow-x-auto scrollbar-hide pt-12 no-select z-30 md:flex">
-          <div className="flex gap-2 pl-40 ml-4">
-            {bannerTags.map((tag, index) => (
-              <BannerTag key={index} text={tag.text} icon={tag.icon} />
-            ))}
-          </div>
+        <div className="hidden relative w-full md:flex">
+          <BannerTag tags={bannerTags} />
         </div>
       </div>
     );
