@@ -2,7 +2,7 @@ import React from 'react';
 
 interface BannerTagProps {
   text: string;
-  icon: string; // Add an icon prop
+  icon: string;
 }
 
 const BannerTag = ({ text, icon }: BannerTagProps) => {

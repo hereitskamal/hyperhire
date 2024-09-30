@@ -23,6 +23,5 @@ export default function handler(req, res) {
     },
   ];
 
-  // Return the swiper cards data as a JSON response
   res.status(200).json(swiperCards);
 }

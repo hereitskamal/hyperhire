@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react'; // Import React
+import React, { useState } from 'react';
 
 interface DropdownProps {
   label: string;
@@ -8,7 +8,7 @@ interface DropdownProps {
   labelColor?: string;
   options: string[];
   onSelect: (option: string) => void;
-  width?: string; // Optional width prop
+  width?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({

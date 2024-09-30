@@ -1,23 +1,23 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-interface Job {
+export interface Job {
   title: string;
   sub: string;
 }
 
-interface SwiperCard {
+export interface SwiperCard {
   title: string;
   subtitle: string;
   tags: string[];
   imageUrl: string;
 }
 
-interface BannerTagData {
+export interface BannerTagData {
   text: string;
   icon: string;
 }
 
-interface Skill {
+export interface Skill {
   id: string;
   label: string;
 }
